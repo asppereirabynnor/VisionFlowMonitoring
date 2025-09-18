@@ -24,6 +24,9 @@ wheels/
 venv/
 env/
 ENV/
+venv
+.venv
+.env
 
 # Environment variables
 .env
@@ -41,6 +44,14 @@ ENV/
 *.log
 logs/
 app.log
+
+# Arquivos grandes
+*.dylib
+*.pack
+*.so.1
+*.so.2
+*.so.3
+*.dll
 
 # Local development
 .DS_Store
