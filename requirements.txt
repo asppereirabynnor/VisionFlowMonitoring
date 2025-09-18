@@ -1,0 +1,36 @@
+# Backend
+fastapi==0.95.0
+uvicorn==0.21.1
+python-multipart==0.0.6
+python-dotenv==1.0.0
+
+# Banco de Dados
+sqlalchemy==2.0.9
+alembic==1.10.3
+psycopg2-binary==2.9.6
+
+# Processamento de Vídeo
+opencv-python-headless==4.7.0.72
+numpy==1.24.3
+ffmpeg-python==0.2.0
+
+# IA e Visão Computacional
+torch==2.0.0
+torchvision==0.15.1
+ultralytics==8.0.20
+
+# ONVIF
+onvif-zeep==0.2.12
+zeep==4.2.1
+
+# Autenticação
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+
+# Outras dependências
+aiofiles==23.1.0
+python-socketio==5.8.0
+python-engineio==4.4.1
+websockets==11.0.1
+aiohttp==3.8.4

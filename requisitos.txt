@@ -1,0 +1,105 @@
+# Requisitos para desenvolvimento do sistema de monitoramento inteligente com câmera IP
+
+# ==========================
+# 1. Estruturação do Backend (FastAPI - Python)
+# ==========================
+- [ ] Criar estrutura de diretórios modular:
+  - `api/` para rotas (FastAPI)
+  - `core/` para lógica principal (OpenCV, ONVIF, YOLOv8)
+  - `models/` para ORM (SQLAlchemy)
+  - `db/` para integração com PostgreSQL (SQLAlchemy + Alembic)
+  - `websocket/` para notificações em tempo real (FastAPI WebSocket)
+  - `auth/` para autenticação e controle de acesso (FastAPI Users)
+- [ ] Implementar `main.py` com inicialização do FastAPI
+- [ ] Configurar `.env` para variáveis sensíveis (python-dotenv)
+- [ ] Adicionar suporte a CORS, logging e autenticação JWT (FastAPI Users ou PyJWT)
+
+# ==========================
+# 2. Conexão com Câmeras IP (OpenCV - Python)
+# ==========================
+- [ ] Conectar a câmeras RTSP usando OpenCV
+- [ ] Gerenciar múltiplos fluxos simultâneos
+- [ ] Implementar reconexão automática em caso de falha
+- [ ] Extrair e exibir metadados de fluxo
+
+# ==========================
+# 3. Controle ONVIF (onvif-zeep - Python)
+# ==========================
+- [ ] Autenticação ONVIF
+- [ ] Movimentação Pan, Tilt, Zoom
+- [ ] Gerenciamento de presets (gravar, ir para posição)
+- [ ] Descoberta automática de câmeras na rede
+
+# ==========================
+# 4. Processamento de Vídeo com IA (YOLOv8 - Python)
+# ==========================
+- [ ] Carregar modelo YOLOv8 pré-treinado (Ultralytics)
+- [ ] Detectar objetos relevantes (pessoas, veículos, etc.)
+- [ ] Adicionar lógica de decisão para eventos críticos
+- [ ] Capturar evidência (frame ou vídeo curto) do evento
+
+# ==========================
+# 5. Gravação e Armazenamento (FFmpeg - Python Wrapper)
+# ==========================
+- [ ] Utilizar FFmpeg para gravação de trechos (subprocess/ffmpeg-python)
+- [ ] Salvar vídeos curtos por evento detectado
+- [ ] Armazenar thumbnails de eventos (OpenCV)
+- [ ] Registrar eventos no banco de dados (PostgreSQL)
+
+# ==========================
+# 6. Comunicação em Tempo Real (WebSocket - FastAPI)
+# ==========================
+- [ ] Implementar WebSocket para envio de eventos ao frontend
+- [ ] Suporte a streaming MJPEG ou WebRTC (via servidor intermediário)
+- [ ] Enviar notificações com dados + imagem do evento
+
+# ==========================
+# 7. Interface Web Moderna (React + Tailwind + ShadCN - JavaScript/TypeScript)
+# ==========================
+- [ ] Criar layout responsivo e com tema escuro
+- [ ] Exibir stream da câmera em tempo real (WebRTC/MJPEG via proxy)
+- [ ] Painel de controle PTZ (botões direcionais, zoom, presets)
+- [ ] Lista de eventos com thumbnails, datas e detalhes
+- [ ] Dashboard com gráficos de eventos, tipos de objetos, horários (Chart.js ou Recharts)
+- [ ] Página de configurações (usuários, câmeras, regras)
+
+# ==========================
+# 8. Banco de Dados (PostgreSQL - SQLAlchemy/Alembic)
+# ==========================
+- [ ] Modelos: Câmeras, Usuários, Eventos, Regras
+- [ ] CRUD via SQLAlchemy ORM
+- [ ] Scripts de criação e migração de banco com Alembic
+
+# ==========================
+# 9. Segurança e Usuários (JWT - FastAPI Users)
+# ==========================
+- [ ] Autenticação JWT com níveis de permissão
+- [ ] Cadastro e login de usuários via frontend
+- [ ] Permissões de visualização e controle por usuário
+- [ ] Rotas protegidas por token JWT
+- [ ] Gestão de sessões e expiração
+- [ ] Recuperação de senha e atualização de perfil
+
+# ==========================
+# 10. Deploy e Operação (Docker + Docker Compose)
+# ==========================
+- [ ] Dockerizar backend (FastAPI), frontend (React) e banco de dados (PostgreSQL)
+- [ ] Usar Docker Compose para orquestração
+- [ ] Implementar logs (eventos, falhas, conexões - Python logging)
+- [ ] Monitoramento via Grafana/Prometheus (opcional)
+
+# ==========================
+# 11. Testes e Validação (Pytest - Backend / Cypress - Frontend)
+# ==========================
+- [ ] Testar com câmeras de diferentes marcas/modelos
+- [ ] Verificar tempo de resposta da IA em tempo real
+- [ ] Simular falhas e reconexões
+- [ ] Testes em diferentes redes e ambientes
+
+# ==========================
+# 12. Expansões Futuras (Extras)
+# ==========================
+- [ ] Reconhecimento facial ou leitura de placas (DeepFace / OpenALPR)
+- [ ] App mobile com notificações push (React Native + Expo + Firebase)
+- [ ] Integração com sistemas de alarme ou controle de acesso (via API externa)
+- [ ] API pública para integrações externas (documentada com Swagger/OpenAPI)

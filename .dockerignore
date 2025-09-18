@@ -1,0 +1,81 @@
+# Arquivos e diretórios a serem ignorados pelo Docker
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Arquivos de ambiente e configuração
+.env
+.venv
+venv/
+ENV/
+.idea/
+.vscode/
+
+# Arquivos de dados
+*.db
+*.sqlite3
+uploads/
+events/
+data/
+
+# Arquivos de log
+*.log
+logs/
+
+# Arquivos temporários
+.DS_Store
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# Diretórios específicos do projeto
+node_modules/
+web/node_modules/
+web/build/
+web/dist/
+web/.cache/
+web/.next/
+web/.nuxt/
+web/.vuepress/dist
+web/.serverless/
+web/.fusebox/
+web/.dynamodb/
+web/.tern-port
+web/.yarn/cache
+web/.yarn/unplugged
+web/.yarn/build-state.yml
+web/.yarn/install-state.gz
+web/.pnp.*
+
+# Arquivos grandes
+*.pt
+*.weights
+*.h5
+*.onnx
+*.pb
+*.tflite
+*.mlmodel
+*.caffemodel
+*.prototxt
+*.pth
+*.pkl
+*.npy
+*.npz

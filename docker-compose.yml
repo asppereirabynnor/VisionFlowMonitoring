@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: asppereira/bynnor-vision:backend
+    container_name: bynnor_backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - sqlite_data:/app/data
+      - uploads_data:/app/uploads
+      - events_data:/app/events
+    environment:
+      - DATABASE_URL=sqlite:///./data/bynnor.db
+      - SQLITE_DB=/app/data/bynnor.db
+      - JWT_SECRET=${JWT_SECRET:-your_secret_key_here}
+      - JWT_ALGORITHM=${JWT_ALGORITHM:-HS256}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES:-1440}
+    networks:
+      - bynnor-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_URL=http://localhost:8000
+    image: asppereira/bynnor-vision:frontend
+    container_name: bynnor_frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - bynnor-network
+
+networks:
+  bynnor-network:
+    driver: bridge
+
+volumes:
+  sqlite_data:
+    driver: local
+  uploads_data:
+    driver: local
+  events_data:
+    driver: local
